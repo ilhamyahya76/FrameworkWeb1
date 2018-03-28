@@ -96,7 +96,7 @@ div.desc {
 <div class="container-fluid text-center" style="background-color:#FFFFFFF;height:160px;">
   <br>
   <br>
-  <img src="../assets/Gambar/lol 2.png">
+  <img src="../upload/Gambar/lol 2.png">
 </div>
 
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
@@ -107,7 +107,7 @@ div.desc {
           <span class="icon-bar"></span>                       
       </button>
       <a class="navbar-brand" href="#"><img class="img-responsive" alt="Brand" src="
-    ../assets/Gambar/GOGO.jpg"></a>
+    ../upload/Gambar/GOGO.jpg"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
