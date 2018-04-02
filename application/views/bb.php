@@ -8,6 +8,21 @@
   <script src="../assets/js/jquery-3.1.1.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
   <style>
+  table {
+      border-collapse:collapse;
+      width:100%;
+    }
+    th,td {
+      text-align:left;
+      padding:8px;
+      border-bottom:1px solid #ddd;
+    }
+    tr:nth-child(even){background-color:#f2f2f2}
+
+    th {
+      background-color:#4CAF50;
+      color:white;
+    }
   body {
       position: relative; 
   }
@@ -112,31 +127,43 @@ div.desc {
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#section1">Home</a></li>
-          <li><a href="#section2">About</a></li>
+          <li><a href="index">Home</a></li>
+          <li><a href="index#section2">About</a></li>
           <li><a href="blog">Blog</a></li>
       </div>
     </div>
   </div>
 </nav>    
-
-<div id="section1" class="container-fluid">
- <div class="jumbotron warna-1">
-			<div class="page-header">
-				<h1>Black Dilan : 1500 Masehi Panther</h1>
-					<p>Jangan Wakanda, Kamu gk akan kuat. Gak tau kalau sore...</p>
-			</div>
- </div>
-</div>
 <div id="section2" class="container-fluid">
 	<div class="container">
  <div class="jumbotron warna-1">
-			<div class="page-header">
-				<h1>About</h1>
-					<p>Nama : Ilham</p>
-					<p>Panggilan : Supeni</p>
-					<p>Hobi : Memancing (Keributan)</p>
-			</div>
+			<?php 
+  foreach ($detail as $key): ?>
+    <table border="1" width="600">
+      <b>
+      <tr>
+        <td>
+        Judul Artikel : <?=$key->title;?>
+        </td>
+      </tr>
+      <tr>  
+        <td>
+        Tanggal Posting : <?=$key->tgl_posting;?>
+        </td>
+      </tr>
+      <tr>  
+        <td>
+        Artikel : <?=$key->artikel;?>
+        </td>
+      </tr>
+      <tr>  
+        <td>
+        <img src="../upload/Gambar/<?php echo $key->image; ?>" height="50" weight="60%">
+        </td>
+      </tr>
+    </b>
+    </table>
+  <?php endforeach ?>
  </div>
 <div class="clearfix"></div>
 	</div>
