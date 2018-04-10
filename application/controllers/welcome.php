@@ -21,18 +21,6 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('aa');
 	}
-	public function blog()
-	{
-		$this->load->model('MBlog');
-		$data['konten'] = $this->MBlog->get_konten();
-		$this->load->view('zz',$data);
-	}
-	public function detail($id)
-	{
-		$this->load->model('MBlog');
-		$data['detail'] = $this->MBlog->get_konten_id($id);
-		$this->load->view('bb',$data);
-	}
 }
 
 /* End of file welcome.php */

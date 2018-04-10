@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dapluod extends CI_Model {
-		public function upload()
+	public function upload()
 	{
 		$config['upload_path'] = './upload/Gambar';
 		$config['allowed_types'] = 'jpg|png';
@@ -24,9 +24,29 @@ class Dapluod extends CI_Model {
 	{
 		$data = array(
 			'id' => '',
-			'gambar' => $upload['file']['file_name']
+			'title' => $this->input->post('title'),
+			'artikel' => $this->input->post('artikel'),
+			'artikel_pendek' => $this->input->post('arpen'),
+			'image' => $upload['file']['file_name'],
+			'tgl_posting' => date("Y-m-d H:i:s")
 		);
 
-		$this->db->insert('up', $data);
+		$this->db->insert('konten', $data);
+	}
+
+	public function hapusdata($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete('konten');
+	}
+
+	public function edit_data($where,$table)
+	{		
+	return $this->db->get_where($table,$where);
+	}
+
+	public function update_data($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
 	}
 }

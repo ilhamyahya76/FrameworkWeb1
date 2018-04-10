@@ -163,11 +163,21 @@ div.desc {
 			</tr>
 			<tr>	
 				<td>
-				<a href="detail/<?php echo $key->id; ?>">
+				<a href="../blog/detail/<?php echo $key->id; ?>">
 				<button>Baca Selengkapnya?</button>
 				</a>
 				</td>
 			</tr>
+      <tr>
+      <td>
+            <?php echo anchor('blog/edit/'.$key->id,'Edit'); ?>
+      </td>
+      </tr>
+      <tr>
+        <td>
+            <?php echo anchor('blog/hapus/'.$key->id, 'Delete'); ?>
+      </td>
+      </tr>
 		</b>
 		</table>
 	<?php } ?>
