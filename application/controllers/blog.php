@@ -34,9 +34,32 @@ class Blog extends CI_Controller {
 
 	public function tambah()
 	{
-		$this->load->model('dapluod');
-		$data = array();
+		$this->load->helper(array('form', 'url'));
 
+        $this->load->library('form_validation');
+
+                $this->form_validation->set_rules('title', 'Judul', 'required', array('required'=>'Isi %s'));
+                $this->form_validation->set_rules('author', 'Author', 'required', array(
+				'required' 		=> 'Isi %s donk, males amat.'
+				));
+                $this->form_validation->set_rules('artikel', 'Artikel', 'required|min_length[8]', array(
+				'required' 		=> 'Isi %s donk, males amat.'
+				));
+                $this->form_validation->set_rules('arpen', 'Artikel Pendek', 'required');
+                $this->form_validation->set_rules('input_gambar', 'Gambar', 'required');
+                $this->form_validation->set_rules('sumber', 'Sumber', 'required');
+
+                if ($this->form_validation->run() == FALSE)
+                {
+                        $this->load->view('v_upload');
+                }
+                else
+                {
+                        $this->load->view('zz');
+                }
+		
+        $this->load->model('dapluod');
+		$data = array();
 		if ($this->input->post('submit')) {
 			$upload = $this->dapluod->upload();
 
@@ -47,8 +70,6 @@ class Blog extends CI_Controller {
 				$data['message'] = $upload['error'];
 			}
 		}
-
-		$this->load->view('v_upload', $data);
 	}
 
 	public function hapus($id)
@@ -65,19 +86,39 @@ class Blog extends CI_Controller {
 	}
 
 	public function update(){
+	
+	$this->load->helper(array('form', 'url'));
+	$this->load->library('form_validation');
+
+                $this->form_validation->set_rules('title', 'Judul', 'required');
+                $this->form_validation->set_rules('author', 'Author', 'required');
+                $this->form_validation->set_rules('artikel', 'Artikel', 'required');
+                $this->form_validation->set_rules('arpen', 'Artikel Pendek', 'required');
+                $this->form_validation->set_rules('input_gambar', 'Gambar', 'required');
+                $this->form_validation->set_rules('sumber', 'Sumber', 'required');
+
+                if ($this->form_validation->run() == FALSE)
+                {
+                        $this->load->view('v_edit');
+                }
+    $this->load->model('dapluod');
 	$id = $this->input->post('id');
 	$title = $this->input->post('title');
 	$artikel = $this->input->post('artikel');
 	$arpen = $this->input->post('arpen');
 	$image = $this->input->post('image');
 	$tgl = $this->input->post('tgl');
+	$author = $this->input->post('author');
+	$sumber = $this->input->post('sumber');
  
 	$data = array(
 		'title' => $title,
 		'artikel' => $artikel,
 		'artikel_pendek' => $arpen,
 		'image' => $image,
-		'tgl_posting' => $tgl
+		'tgl_posting' => $tgl,
+		'author' => $author,
+		'sumber' => $sumber
 	);
  
 	$where = array(

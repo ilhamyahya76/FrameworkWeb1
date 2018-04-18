@@ -28,7 +28,9 @@ class Dapluod extends CI_Model {
 			'artikel' => $this->input->post('artikel'),
 			'artikel_pendek' => $this->input->post('arpen'),
 			'image' => $upload['file']['file_name'],
-			'tgl_posting' => date("Y-m-d H:i:s")
+			'tgl_posting' => date("Y-m-d H:i:s"),
+			'author' => $this->input->post('author'),
+			'sumber' => $this->input->post('sumber')
 		);
 
 		$this->db->insert('konten', $data);

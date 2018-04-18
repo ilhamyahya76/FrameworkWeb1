@@ -4,9 +4,10 @@
   <title>Bootstrap Coi</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <script src="../assets/js/jquery-3.1.1.min.js"></script>
-  <script src="../assets/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://localhost/CI3/assets/css/bootstrap.min.css">
+  <script src="http://localhost/CI3/assets/js/jquery-3.1.1.min.js"></script>
+  <script src="http://localhost/CI3/assets/js/bootstrap.min.js"></script>
+ 
   <style>
   body {
       position: relative; 
@@ -96,7 +97,7 @@ div.desc {
 <div class="container-fluid text-center" style="background-color:#FFFFFFF;height:160px;">
   <br>
   <br>
-  <img src="../upload/Gambar/lol 2.png">
+  <img src="http://localhost/CI3/upload/Gambar/lol 2.png">
 </div>
 
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
@@ -107,7 +108,7 @@ div.desc {
           <span class="icon-bar"></span>                       
       </button>
       <a class="navbar-brand" href="#"><img class="img-responsive" alt="Brand" src="
-    ../upload/Gambar/GOGO.jpg"></a>
+    http://localhost/CI3/upload/Gambar/GOGO.jpg"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
