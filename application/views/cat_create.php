@@ -23,12 +23,12 @@
 				<tr>
 					<td>Nama Category</td>
 					<td>:</td>
-					<td><input type="text" name="cat_name" ></td>
+					<td><input type="text" name="cat_name"></td>
 				</tr>
 				<tr>
 					<td>Deskripsi</td>
 					<td>:</td>
-					<td><input type="text" name="cat_description" ></td>
+					<td><input type="text" name="cat_description"></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" name="submit" value="simpan"></td>

@@ -30,6 +30,20 @@ class Category extends CI_Controller {
 	{
 		$this->load->model('category_model');
 
+		$this->load->helper(array('form', 'url'));
+
+        $this->load->library('form_validation');
+
+                $this->form_validation->set_rules('cat_name', 'Nama Kategori', 'required|is_unique[categories.cat_name]');
+                $this->form_validation->set_rules('cat_description', 'Deskripsi Kategori', 'required', array(
+				'required' 		=> 'Isi %s donk, males amat.'
+				));
+
+         if ($this->form_validation->run() == FALSE)
+                {
+                        $this->load->view('cat_create');
+                } else {
+
 		$post_data = array(
 	    	    'id' => '',
 	    	   	'cat_name' 		  => $this->input->post('cat_name'),
@@ -42,6 +56,7 @@ class Category extends CI_Controller {
 		        $this->category_model->create_category($post_data);
 		        $this->load->view('cat_create', $post_data);
 	    	}
+	    }
 	}
 }
 
