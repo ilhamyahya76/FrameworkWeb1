@@ -32,8 +32,17 @@ class Blog extends CI_Controller {
 		$this->load->view('bb',$data);
 	}
 
+	public function category($category)
+	{
+		$this->load->model('MBlog');
+		$data['detail'] = $this->MBlog->get_kategori($category);
+		$this->load->view('bb',$data);
+	}
+
 	public function tambah()
 	{
+		$this->load->model('category_model');
+		$data['categories'] = $this->category_model->get_all_categories();
 		$this->load->helper(array('form', 'url'));
 
         $this->load->library('form_validation');
@@ -51,7 +60,7 @@ class Blog extends CI_Controller {
 
                 if ($this->form_validation->run() == FALSE)
                 {
-                        $this->load->view('v_upload');
+                        $this->load->view('v_upload',$data);
                 }
                 else
                 {
@@ -80,8 +89,10 @@ class Blog extends CI_Controller {
 	}
 
 	public function edit($id){
+		$this->load->model('category_model');
 		$where = array('id' => $id);
 		$data['user'] = $this->dapluod->edit_data($where,'konten')->result();
+		$data['categories'] = $this->category_model->get_all_categories();
 		$this->load->view('v_edit',$data);
 	}
 
@@ -109,7 +120,7 @@ class Blog extends CI_Controller {
 	$image = $this->input->post('image');
 	$tgl = $this->input->post('tgl');
 	$author = $this->input->post('author');
-	$sumber = $this->input->post('sumber');
+	$cat_id = $this->input->post('cat_id');
  
 	$data = array(
 		'title' => $title,
@@ -118,7 +129,8 @@ class Blog extends CI_Controller {
 		'image' => $image,
 		'tgl_posting' => $tgl,
 		'author' => $author,
-		'sumber' => $sumber
+		'sumber' => $sumber,
+		'cat_id' => $cat_id
 	);
  
 	$where = array(

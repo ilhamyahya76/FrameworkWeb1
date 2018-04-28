@@ -5,9 +5,9 @@ class Dapluod extends CI_Model {
 	public function upload()
 	{
 		$config['upload_path'] = './upload/Gambar';
-		$config['allowed_types'] = 'jpg|png';
-		$config['max_size']  = '2048';
+		$config['allowed_types'] = '*';
 		$config['remove_space']  = TRUE;
+		$config['overwrite']			= TRUE;
 		
 		$this->load->library('upload', $config);
 		
@@ -30,7 +30,8 @@ class Dapluod extends CI_Model {
 			'image' => $upload['file']['file_name'],
 			'tgl_posting' => date("Y-m-d H:i:s"),
 			'author' => $this->input->post('author'),
-			'sumber' => $this->input->post('sumber')
+			'sumber' => $this->input->post('sumber'),
+			'cat_id' => $this->input->post('cat_id')
 		);
 
 		$this->db->insert('konten', $data);

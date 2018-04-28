@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="http://localhost/CI3/assets/css/bootstrap.min.css">
   <script src="http://localhost/CI3/assets/js/jquery-3.1.1.min.js"></script>
   <script src="http://localhost/CI3/assets/js/bootstrap.min.js"></script>
-
   <style>
   table {
       border-collapse:collapse;
@@ -139,37 +138,30 @@ div.desc {
 	<div class="container">
  <div class="jumbotron warna-1">
 			<?php 
-  foreach ($detail as $key): ?>
-    <table border="1" width="600">
-      <b>
+	foreach ($categories as $key) {?>
+		<table border="1" width="600">
+			<b>
+			<tr>
+				<td>
+				Nama Kategori : <?=$key->cat_name;?>
+				</td>
+			</tr>
+			<tr>	
+				<td>
+				Deksripsi Kategori : <?=$key->cat_description;?>
+				</td>
+			</tr>
+      <td>
+            <?php echo anchor('category/edit/'.$key->id,'Edit'); ?>
+      </td>
+      </tr>
       <tr>
         <td>
-        Judul Artikel : <?=$key->title;?>
-        </td>
-      </tr>
-      <tr>  
-        <td>
-        Kategori : <?=$key->cat_name;?>
-        </td>
-      </tr>
-      <tr>  
-        <td>
-        Tanggal Posting : <?=$key->tgl_posting;?>
-        </td>
-      </tr>
-      <tr>  
-        <td>
-        Artikel : <?=$key->artikel;?>
-        </td>
-      </tr>
-      <tr>  
-        <td>
-        <img src="http://localhost/CI3/upload/Gambar/<?php echo $key->image; ?>" height="50" weight="60%">
-        </td>
-      </tr>
-    </b>
-    </table>
-  <?php endforeach ?>
+            <?php echo anchor('category/hapus/'.$key->id, 'Delete'); ?>
+      </td>
+		</b>
+		</table>
+	<?php } ?>
  </div>
 <div class="clearfix"></div>
 	</div>

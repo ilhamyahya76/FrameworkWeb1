@@ -18,7 +18,7 @@
 
  	<?php echo validation_errors(); ?>
 
-	<?php echo form_open('blog/tambah'); ?>
+	<?php echo form_open_multipart('blog/tambah'); ?>
 	<table>
 				<tr>
 					<td>Title</td>
@@ -49,6 +49,17 @@
 					<td>Sumber</td>
 					<td>:</td>
 					<td><input type="text" name="sumber" value=""></td>
+				</tr>
+				<tr>
+					<td>Kategori</td>
+					<td>:</td>
+						<td><select name="cat_id" required>
+							<option value="">Pilih Kategori</option>
+							<?php foreach($categories as $category): ?>
+							<option value="<?php echo $category->id; ?>"><?php echo $category->cat_name; ?></option>
+							<?php endforeach; ?>
+						</select>
+						</td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" name="submit" value="simpan"></td>
