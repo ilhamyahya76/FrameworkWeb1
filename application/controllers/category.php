@@ -58,6 +58,7 @@ class Category extends CI_Controller {
 	    	}
 	    }
 	}
+<<<<<<< HEAD
 
 	public function hapus($id)
 	{
@@ -95,6 +96,8 @@ class Category extends CI_Controller {
 	$this->category_model->update_data($where,$data,'categories');
 	redirect('category');
 	}
+=======
+>>>>>>> origin/master
 }
 
 /* End of file welcome.php */

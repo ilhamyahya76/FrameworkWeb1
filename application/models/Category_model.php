@@ -13,6 +13,7 @@ class Category_model extends CI_Model {
 		$query = $this->db->get('categories');
 		return $query->result();
 	}
+<<<<<<< HEAD
 
 	public function hapusdata($id)
 	{
@@ -29,4 +30,6 @@ class Category_model extends CI_Model {
 		$this->db->where($where);
 		$this->db->update($table,$data);
 	}
+=======
+>>>>>>> origin/master
 }
