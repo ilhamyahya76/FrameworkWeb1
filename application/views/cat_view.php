@@ -151,7 +151,6 @@ div.desc {
 				Deksripsi Kategori : <?=$key->cat_description;?>
 				</td>
 			</tr>
-<<<<<<< HEAD
       <td>
             <?php echo anchor('category/edit/'.$key->id,'Edit'); ?>
       </td>
@@ -160,8 +159,6 @@ div.desc {
         <td>
             <?php echo anchor('category/hapus/'.$key->id, 'Delete'); ?>
       </td>
-=======
->>>>>>> origin/master
 		</b>
 		</table>
 	<?php } ?>
