@@ -4,9 +4,26 @@
   <title>Bootstrap Coi</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://localhost/CI3/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://localhost/CI3/assets/vendor/bootstrap/css/bootstrap.min.css">
   <script src="http://localhost/CI3/assets/js/jquery-3.1.1.min.js"></script>
-  <script src="http://localhost/CI3/assets/js/bootstrap.min.js"></script>
+  <script src="http://localhost/CI3/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <link href="<?php echo base_url(). '/assets/vendor/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/4/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/4/css/custom.css">
+
+        <script src="<?php echo base_url() ?>assets/4/js/jquery-1.9.1.min.js"></script>
+
+        <script src="<?php echo base_url() ?>assets/4/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="<?php echo base_url() ?>assets/4/js/holder.min.js"></script>
+
+    <!-- Custom -->
+    <script src="<?php echo base_url() ?>assets/4/js/custom.js"></script>
+
   <style>
   table {
       border-collapse:collapse;
@@ -137,8 +154,13 @@ div.desc {
 <div id="section2" class="container-fluid">
 	<div class="container">
  <div class="jumbotron warna-1">
+ <!-- -->
+ <?php if (isset($links)) { ?>
+                <?php echo $links ?>
+            <?php } ?>
+ <!-- -->
 			<?php 
-	foreach ($konten as $key) {?>
+	foreach ($results as $key) {?>
 		<table border="1" width="600">
 			<b>
 			<tr>
@@ -177,6 +199,8 @@ div.desc {
         <td>
             <?php echo anchor('blog/hapus/'.$key->id, 'Delete'); ?>
       </td>
+      </tr>
+      <tr>
       </tr>
 		</b>
 		</table>
