@@ -52,4 +52,23 @@ class Dapluod extends CI_Model {
 		$this->db->where($where);
 		$this->db->update($table,$data);
 	}
+
+	public function create_user($data) {
+		return $this->db->insert('user', $data);
+	}
+
+	public function login($username, $password){
+        // Validasi
+        $this->db->where('username', $username);
+        $this->db->where('password', $password);
+
+        $result = $this->db->get('user');
+
+
+        if($result->num_rows() == 1){
+            return $result->row(0)->id;
+        } else {
+            return false;
+        }
+    }
 }

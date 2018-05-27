@@ -28,6 +28,7 @@ class Blog extends CI_Controller {
         // load URL helper
         $this->load->helper('url');
         $this->load->model('MBlog');
+        $this->load->model('dapluod');
     }
 
 	public function index()
@@ -130,6 +131,9 @@ class Blog extends CI_Controller {
 
 	public function tambah()
 	{
+		if(!$this->session->userdata('logged_in')){
+			redirect('user/login');
+		}
 		$this->load->model('category_model');
 		$data['categories'] = $this->category_model->get_all_categories();
 		$this->load->helper(array('form', 'url'));
@@ -228,7 +232,7 @@ class Blog extends CI_Controller {
  
 	$this->dapluod->update_data($where,$data,'konten');
 	redirect('blog');
-}
+	}
 }
 
 /* End of file welcome.php */

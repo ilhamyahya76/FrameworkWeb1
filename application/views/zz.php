@@ -124,7 +124,13 @@ div.desc {
   </style>
 </head>
 <body>
+<?php if($this->session->flashdata('user_loggedin')): ?>
+<?php echo '<div class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</div>'; ?>
+<?php endif; ?>
 
+<?php if($this->session->flashdata('user_loggedout')): ?>
+<?php echo '<div class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</div>'; ?>
+<?php endif; ?>
 <div class="container-fluid text-center" style="background-color:#FFFFFFF;height:160px;">
   <br>
   <br>
@@ -155,11 +161,29 @@ div.desc {
 	<div class="container">
  <div class="jumbotron warna-1">
  <!-- -->
+  <?php if(!$this->session->userdata('logged_in')) : ?>
+
+                    <div class="btn-group" role="group" aria-label="Data baru">
+                        <?php echo anchor('user/create_user', 'Register', array('class' => 'btn btn-outline-light')); ?>
+                        <?php echo anchor('user/login', 'Login', array('class' => 'btn btn-outline-light')); ?>
+
+                    </div>
+
+  <?php endif; ?>
+  <?php if($this->session->userdata('logged_in')) : ?>
+                    <div class="btn-group" role="group" aria-label="Data baru">
+
+                        <?php echo anchor('blog/tambah', 'Artikel Baru', array('class' => 'btn btn-outline-light')); ?>
+                        <?php echo anchor('category/create', 'Kategori Baru', array('class' => 'btn btn-outline-light')); ?>
+                        <?php echo anchor('user/logout', 'Logout', array('class' => 'btn btn-outline-light')); ?>
+                    </div>
+                <?php endif; ?>
  <?php if (isset($links)) { ?>
                 <?php echo $links ?>
             <?php } ?>
  <!-- -->
-			<?php 
+	<?php
+
 	foreach ($results as $key) {?>
 		<table border="1" width="600">
 			<b>
