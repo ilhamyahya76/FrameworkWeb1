@@ -72,7 +72,7 @@ class User extends CI_Controller{
 	$user_id = $this->dapluod->login($username, $password);
 
 	if($user_id){
-		$level = $this->loginModel->get_user($id_user);
+		$level = $this->dapluod->get_user($id_user);
 		// Buat session
 		$user_data = array(
 			'user_id' => $user_id,
