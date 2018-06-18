@@ -71,4 +71,22 @@ class Dapluod extends CI_Model {
             return false;
         }
     }
+
+    public function insert_level($id_user)
+	{
+		$data = array(
+			'id_user' => $id_user,
+			'id_level' => 2
+		);
+
+		$this->db->insert('user_level', $data);
+	}
+
+	public function get_user($username)
+	{
+		$this->db->select('id');
+		$this->db->from('user');
+		$this->db->where('username', $username);
+		return $this->db->get()->result();
+	}
 }

@@ -19,6 +19,11 @@ class Category extends CI_Controller {
 	 */
 	public function index()
 	{
+		if ($this->session->userdata('level') != 1) {
+			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
+			redirect('blog');
+		}
+
 		$this->load->model('category_model');
 
 		$data['categories'] = $this->category_model->get_all_categories();

@@ -131,6 +131,10 @@ div.desc {
 <?php if($this->session->flashdata('user_loggedout')): ?>
 <?php echo '<div class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</div>'; ?>
 <?php endif; ?>
+
+<?php if($this->session->flashdata('not_admin')): ?>
+<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('not_admin').'</p>'; ?>
+ <?php endif; ?>
 <div class="container-fluid text-center" style="background-color:#FFFFFFF;height:160px;">
   <br>
   <br>
@@ -170,6 +174,7 @@ div.desc {
                     </div>
 
   <?php endif; ?>
+  <?php if ($level): ?>
   <?php if($this->session->userdata('logged_in')) : ?>
                     <div class="btn-group" role="group" aria-label="Data baru">
 
@@ -177,7 +182,8 @@ div.desc {
                         <?php echo anchor('category/create', 'Kategori Baru', array('class' => 'btn btn-outline-light')); ?>
                         <?php echo anchor('user/logout', 'Logout', array('class' => 'btn btn-outline-light')); ?>
                     </div>
-                <?php endif; ?>
+  <?php endif; ?>
+  <?php endif; ?>
  <?php if (isset($links)) { ?>
                 <?php echo $links ?>
             <?php } ?>

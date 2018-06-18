@@ -33,6 +33,13 @@
 					<td>:</td>
 					<td><input type="password" name="password"></td>
 				</tr>
+				<td>
+				<p>Level</p>
+				<input type="radio" name="level" value="1">
+				<label>admin</label>
+				<input type="radio" name="level" value="2">
+				<label>user</label>
+				</td>
 				<tr>
 					<td colspan="3"><input type="submit" name="submit" value="simpan"></td>
 				</tr>

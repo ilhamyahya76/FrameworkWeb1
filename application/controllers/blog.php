@@ -33,6 +33,11 @@ class Blog extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('level') == 1) {
+			$data['level'] = true;
+		} else {
+			$data['level'] = false;
+		}
 		$params = array();
         $limit_per_page = 1;
         $start_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -131,8 +136,9 @@ class Blog extends CI_Controller {
 
 	public function tambah()
 	{
-		if(!$this->session->userdata('logged_in')){
-			redirect('user/login');
+		if ($this->session->userdata('level') != 1) {
+			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
+			redirect('blog');
 		}
 		$this->load->model('category_model');
 		$data['categories'] = $this->category_model->get_all_categories();
@@ -176,12 +182,20 @@ class Blog extends CI_Controller {
 
 	public function hapus($id)
 	{
+		if ($this->session->userdata('level') != 1) {
+			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
+			redirect('blog');
+		}
 		$id = $this->uri->segment(3);
 		$this->dapluod->hapusdata($id);
 		redirect('blog');
 	}
 
 	public function edit($id){
+		if ($this->session->userdata('level') != 1) {
+			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
+			redirect('blog');
+		}
 		$this->load->model('category_model');
 		$where = array('id' => $id);
 		$data['user'] = $this->dapluod->edit_data($where,'konten')->result();

@@ -42,6 +42,7 @@ class User extends CI_Controller{
 	    	// Jika tidak ada error upload gambar, maka kita insert ke database via model Blog 
 	    	if( empty($data['upload_error']) ) {
 		        $this->dapluod->create_user($post_data);
+		        $this->dapluod->insert_level($id_user[0]->id);
 		        $this->session->set_flashdata('user_registered', 'Anda telah teregistrasi.');
 		        $this->load->view('register_user', $post_data);
 	    	}
@@ -71,11 +72,13 @@ class User extends CI_Controller{
 	$user_id = $this->dapluod->login($username, $password);
 
 	if($user_id){
+		$level = $this->loginModel->get_user($id_user);
 		// Buat session
 		$user_data = array(
 			'user_id' => $user_id,
 			'username' => $username,
-			'logged_in' => true
+			'logged_in' => true,
+			'level' => $level[0]->id_level	
 		);
 
 		$this->session->set_userdata($user_data);
