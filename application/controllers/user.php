@@ -23,6 +23,7 @@ class User extends CI_Controller{
                 $this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]');
                 $this->form_validation->set_rules('password', 'Password', 'required');
                 $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');
+                $this->form_validation->set_rules('level', 'Level', 'required');
 
 
          if ($this->form_validation->run() == FALSE)
@@ -36,7 +37,8 @@ class User extends CI_Controller{
 	    	   	'nama' 		  => $this->input->post('nama'),
 	    	    'email' 	  => $this->input->post('email'),
 	    	    'username'    => $this->input->post('username'),
-	    	    'password'    => $enc_password
+	    	    'password'    => $enc_password,
+	    	    'id_level'    => $this->input->post('level')
 	    	);
 
 	    	// Jika tidak ada error upload gambar, maka kita insert ke database via model Blog 

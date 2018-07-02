@@ -49,6 +49,18 @@
 					<td><input type="password" name="password2"></td>
 				</tr>
 				<tr>
+                                                <th>Level Akun</th>
+                                                <td>
+                                                <div class="form-group">
+                                                <select class="form-control" name="level">
+                                                  <option value="">Pilih !</option>
+                                                  <option value="2">User Premium</option>
+                                                  <option value="3">User Regular</option>
+                                                </select>
+                                                </div>
+                                                </td>
+                </tr>
+				<tr>
 					<td colspan="3"><input type="submit" name="submit" value="simpan"></td>
 				</tr>
 	</table>
