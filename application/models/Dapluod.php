@@ -43,12 +43,28 @@ class Dapluod extends CI_Model {
 		$this->db->delete('konten');
 	}
 
+	public function hapusdatauser($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete('user');
+	}
+
 	public function edit_data($where,$table)
 	{		
 	return $this->db->get_where($table,$where);
 	}
 
 	public function update_data($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	public function edit_datauser($where,$table)
+	{		
+	return $this->db->get_where($table,$where);
+	}
+
+	public function update_datauser($where,$data,$table){
 		$this->db->where($where);
 		$this->db->update($table,$data);
 	}
@@ -88,5 +104,11 @@ class Dapluod extends CI_Model {
 		$this->db->from('user');
 		$this->db->where('username', $username);
 		return $this->db->get()->result();
+	}
+
+	public function get_datauser()
+	{
+		$query = $this->db->get('user');
+		return $query->result();
 	}
 }

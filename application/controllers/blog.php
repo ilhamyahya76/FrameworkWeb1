@@ -191,6 +191,17 @@ class Blog extends CI_Controller {
 		redirect('blog');
 	}
 
+	public function hapus_user($id)
+	{
+		if ($this->session->userdata('level') != 1) {
+			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
+			redirect('blog');
+		}
+		$id = $this->uri->segment(3);
+		$this->dapluod->hapusdatauser($id);
+		redirect('blog');
+	}
+
 	public function edit($id){
 		if ($this->session->userdata('level') != 1) {
 			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
@@ -246,6 +257,68 @@ class Blog extends CI_Controller {
  
 	$this->dapluod->update_data($where,$data,'konten');
 	redirect('blog');
+	}
+
+	public function edit_user($id){
+		if ($this->session->userdata('level') != 1) {
+			$this->session->set_flashdata('not_admin', 'Anda tidak diizinkan');
+			redirect('blog');
+		}
+		$this->load->model('category_model');
+		$where = array('id' => $id);
+		$data['users'] = $this->dapluod->edit_datauser($where,'user')->result();
+		$data['categories'] = $this->category_model->get_all_categories();
+		$this->load->view('v_edit_user',$data);
+	}
+
+	public function update_user(){
+	
+	$this->load->helper(array('form', 'url'));
+	$this->load->library('form_validation');
+
+                $this->form_validation->set_rules('nama', 'Nama', 'required');
+                $this->form_validation->set_rules('email', 'Email', 'required');
+                $this->form_validation->set_rules('username', 'Username', 'required');
+                $this->form_validation->set_rules('password', 'Password', 'required');
+
+                if ($this->form_validation->run() == FALSE)
+                {
+                        $this->load->view('v_edit_user');
+                }
+    $this->load->model('dapluod');
+	$id = $this->input->post('id');
+	$nama = $this->input->post('nama');
+	$email = $this->input->post('email');
+	$username = $this->input->post('username');
+	$password = $this->input->post('password');
+ 	
+	if($password == ''){
+		$data = array(
+		'nama' => $nama,
+		'email' => $email,
+		'username' => $username
+		);
+	} else {
+		$data = array(
+		'nama' => $nama,
+		'email' => $email,
+		'username' => $username,
+		'password' => $password
+	);
+	}
+ 
+	$where = array(
+		'id' => $id
+	);
+ 
+	$this->dapluod->update_datauser($where,$data,'user');
+	redirect('blog');
+	}
+
+	public function table_user()
+	{
+		$data2['user'] = $this->dapluod->get_datauser();
+		$this->load->view('table_user', $data2);
 	}
 }
 
